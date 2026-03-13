@@ -15,6 +15,7 @@
 }
 
 body {
+            background: radial-gradient(circle, var(--coc-green) 0%, var(--coc-dark-green) 100%);
     font-family: 'comic sans ms', cursive, sans-serif;
     font-size: 18px;
 }
