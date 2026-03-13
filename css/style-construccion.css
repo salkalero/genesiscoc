@@ -74,7 +74,7 @@
 
         @keyframes progress-flow {
             from { background-position: 0 0; }
-            to { background-position: 40px 0; }
+            to { background-position: 70px 0; }
         }
 
         .upgrade-bar {
