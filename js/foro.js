@@ -3,10 +3,9 @@ import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged }
 import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 /**
- * PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
- * 
+ * CONFIGURACIÓN PARA GITHUB PAGES
  */
-const firebaseConfig = {
+const firebaseConfigManual = {
     apiKey: "AIzaSyBIO9an0ZFAMdvJNOuV_Mb6ulZzVego_N8",
     authDomain: "comentariosgeminis-coc.firebaseapp.com",
     projectId: "comentariosgeminis-coc",
@@ -28,7 +27,7 @@ let db = null;
 let appId = null;
 
 /**
- * Función de reintento con retroceso exponencial para operaciones críticas
+ * Función de reintento con retroceso exponencial
  */
 async function withRetry(fn, retries = 5, delay = 1000) {
     for (let i = 0; i < retries; i++) {
@@ -42,28 +41,28 @@ async function withRetry(fn, retries = 5, delay = 1000) {
 }
 
 /**
- * Inicialización de la aplicación y autenticación
+ * Inicialización principal
  */
 const init = async () => {
     try {
-        // 1. Obtener configuración (variables inyectadas por el entorno)
-        let config;
-        try {
-            config = typeof __firebase_config !== 'undefined'
-                ? (typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config)
-                : null;
-        } catch (e) {
-            throw new Error("Error al procesar la configuración de Firebase.");
+        // 1. Decidir qué configuración usar (Prioriza la del sistema IA si existe)
+        let config = null;
+        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+            config = typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config;
+        } else {
+            config = firebaseConfigManual;
         }
 
-        if (!config) throw new Error("Configuración de Firebase no encontrada.");
+        if (!config || !config.apiKey) throw new Error("Configuración de Firebase no válida.");
 
         const app = initializeApp(config);
         const auth = getAuth(app);
         db = getFirestore(app);
-        appId = typeof __app_id !== 'undefined' ? __app_id : 'genesis-coc';
+        
+        // Identificador de la aplicación
+        appId = typeof __app_id !== 'undefined' ? __app_id : 'genesis-coc-prod';
 
-        // 2. Autenticación antes de cualquier operación de base de datos
+        // 2. Autenticación antes de empezar (Regla 3)
         await withRetry(async () => {
             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                 await signInWithCustomToken(auth, __initial_auth_token);
@@ -72,7 +71,7 @@ const init = async () => {
             }
         });
 
-        // 3. Gestionar el estado del usuario y cargar datos
+        // 3. Listener de estado de Auth
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             if (user) {
@@ -81,30 +80,26 @@ const init = async () => {
             }
         });
 
-        // Configurar el evento de envío
         setupForm();
 
     } catch (err) {
-        console.error("Fallo en la inicialización:", err);
+        console.error("Error en init:", err);
         if (loaderContent) {
             loaderContent.innerHTML = `
-                <div class="text-red-400 p-6 bg-black/50 rounded-2xl border-2 border-red-500">
-                    <p class="mb-4 font-bold">Error de conexión</p>
-                    <p class="text-xs font-sans mb-4">${err.message}</p>
-                    <button onclick="location.reload()" class="bg-white text-red-600 px-6 py-2 rounded-xl coc-font uppercase italic text-sm shadow-lg">Reintentar</button>
-                </div>
-            `;
+                <div class="bg-red-900/80 p-6 rounded-2xl border-2 border-red-500 shadow-2xl max-w-sm mx-auto">
+                    <p class="text-white font-bold mb-2 uppercase">Error de Conexión</p>
+                    <p class="text-white/70 text-xs mb-4">${err.message}</p>
+                    <button onclick="location.reload()" class="w-full bg-white text-red-700 py-2 rounded-lg font-black text-sm uppercase">Reintentar Búsqueda</button>
+                </div>`;
             loaderContent.classList.remove('animate-pulse');
         }
     }
 };
 
-/**
- * Escucha cambios en la colección de debate en tiempo real
- */
 function setupCommentsListener() {
     if (!currentUser || !db) return;
 
+    // Ruta estricta según Regla 1
     const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'debate');
 
     onSnapshot(colRef, (snapshot) => {
@@ -113,38 +108,31 @@ function setupCommentsListener() {
             comments.push({ id: doc.id, ...doc.data() });
         });
 
-        // Ordenar en memoria por fecha (más recientes primero)
-        comments.sort((a, b) => {
-            const timeA = a.createdAt?.seconds || 0;
-            const timeB = b.createdAt?.seconds || 0;
-            return timeB - timeA;
-        });
+        // Ordenar en memoria (Regla 2: Sin queries complejas)
+        comments.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
 
         renderComments(comments);
     }, (err) => {
-        console.error("Error al leer comentarios:", err);
+        console.error("Error Firestore:", err);
     });
 }
 
-/**
- * Renderiza la lista de comentarios en el contenedor
- */
 function renderComments(comments) {
     if (!commentsContainer) return;
-
     commentsContainer.innerHTML = '';
+
     if (comments.length === 0) {
-        commentsContainer.innerHTML = '<p class="text-white/60 text-center italic">El tablón está vacío. ¡Escribe el primer comentario!</p>';
+        commentsContainer.innerHTML = '<p class="text-white/60 text-center italic py-10">El clan está en silencio... ¡Sé el primero en hablar!</p>';
         return;
     }
 
     comments.forEach(c => {
-        const date = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString() : 'Hace un momento';
+        const date = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString() : 'Enviando...';
         const div = document.createElement('div');
         div.className = 'comment-bubble p-4 mb-4';
         div.innerHTML = `
             <div class="flex justify-between items-start mb-2 border-b border-amber-900/10 pb-1">
-                <span class="font-black text-amber-900 uppercase text-xs italic">${c.author || 'Aldeano'}</span>
+                <span class="font-black text-amber-900 uppercase text-xs italic tracking-tight">${c.author || 'Aldeano'}</span>
                 <span class="text-[10px] text-amber-800/60 font-bold">${date}</span>
             </div>
             <p class="text-amber-950 font-medium leading-tight text-sm">${c.text || ''}</p>
@@ -153,9 +141,6 @@ function renderComments(comments) {
     });
 }
 
-/**
- * Configura la lógica del botón de envío
- */
 function setupForm() {
     if (!sendBtn) return;
 
@@ -168,7 +153,8 @@ function setupForm() {
         if (!author || !text) return;
 
         sendBtn.disabled = true;
-        sendBtn.innerText = 'Enviando...';
+        const originalText = sendBtn.innerText;
+        sendBtn.innerText = 'ENVIANDO...';
 
         try {
             const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'debate');
@@ -180,13 +166,12 @@ function setupForm() {
             });
             commentTextInput.value = '';
         } catch (error) {
-            console.error("Error al enviar mensaje:", error);
+            console.error("Error al publicar:", error);
         } finally {
             sendBtn.disabled = false;
-            sendBtn.innerText = 'Publicar Comentario';
+            sendBtn.innerText = originalText;
         }
     };
 }
 
-// Iniciar la lógica de la página
 init();
