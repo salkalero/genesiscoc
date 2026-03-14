@@ -149,7 +149,6 @@ body {
     top: 20px;
     right: 20px;
     background: #3b82f6;
-    /* Azul vibrante de botones CoC */
     border: 3px solid #000;
     border-bottom: 8px solid #1e3a8a;
     color: white;
@@ -161,7 +160,7 @@ body {
     gap: 10px;
     z-index: 100;
     transition: all 0.1s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 .rules-btn:hover {
@@ -175,7 +174,6 @@ body {
     box-shadow: none;
 }
 
-/* Asegurar que el texto use la fuente Luckiest Guy si no hereda bien */
 .rules-btn .coc-font {
     text-shadow: 2px 2px 0px #000;
     letter-spacing: 1px;
