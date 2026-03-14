@@ -5,82 +5,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Normas del Clan Génesis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Ubuntu:wght@700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styleNormas.css">
 </head>
 
-<body class="grid-container">
+<body>
+
     <div class="parallax-wrapper">
         <div class="parallax-bg"></div>
-        <div class="contentNormal">
-            <div class="container-grid">
-                <!-- Esquinas -->
-                <div class="circle top-left "></div>
-                <div class="circle top-right"></div>
-                <div class="circle bottom-left"></div>
-                <div class="circle bottom-right"></div>
 
-                <!-- Barras del marco -->
-                <div class="barraVertical izq"></div>
-                <div class="barraVertical der"></div>
-                <div class="barraHorizontal arriba"></div>
-                <div class="barraHorizontal abajo"></div>
+        <div class="content-layer">
+            <div class="board-grid">
+                <!-- Marco de madera -->
+                <div class="bar-v left"></div>
+                <div class="bar-v right"></div>
+                <div class="bar-h top"></div>
+                <div class="bar-h bottom"></div>
 
-                <!-- Contenido -->
-                <div class="contenido">
-                    <h1>Normas del Clan Génesis</h1>
-                    <p>
-                    <ul>
-                        <h2>Art.1 Guerras Diarias</h2>
-                        <h3>Organización y Registro.</h3>
-                        <li><strong>1.1.- Guerras Continuas:</strong> Salvo excepciones extraordinarias, el clan siempre
-                            estará en
-                            guerra.</li>
-                        <li><strong>1.2.- Aviso de Registro:</strong> El día anterior a la búsqueda, se publicará un
-                            aviso en el chat. Es
-                            fundamental estar atento para confirmar disponibilidad. Si no te registras no participas.
-                        </li>
-                        <li><strong>1.3.- Horario de Búsqueda:</strong> Se realizará por la mañana (horario peninsular
-                            español).</li>
-                        <li><strong>1.4.- Selección de Guerreros:</strong> Las guerras se organizan en grupos de 5
-                            (5vs5, 10vs10, etc.).
-                            Si el número de participantes está cerca a la alta, para cubrir el mínimo, el líder elegirá
-                            miembros de forma estratégica.
-                            Estos jugadores/as no están obligados a atacar, pero si incumplen alguna otra norma, podrán
-                            ser sancionados.</li>
-                        <li><strong>1.5.- Decisión Final:</strong> El líder tiene la última palabra sobre quién entra y
-                            quién se queda fuera, si el número de participantes está cerca de la baja. Teniendo el rango
-                            de Veterano prioridad para permanecer en la guerra.</li>
-                        <h3>Normas y sanciones.</h3>
-                        <li><strong>1.6.- Regla del espejo (Primeras 12h):</strong>Durante las primeras 12 horas de la
-                            guerra. solo está permitido atacar a tu número equivalente (tu "espejo")./li>
-                        <li><strong>1.7.- Ataque Libre (Después de 12h):</strong>Una vez transcurrida las primeras 12
-                            horas, los ataques son libres y podrás elegir al rival que prefieras del mapa.</li>
-                        <li><strong>1.8.- Sanciones:</strong>El incumplimiento de la "Regla del Espejo" (atacar a otro
-                            rival antes de tiempo) conllevará la degradación de rango y la exclusión de la siguiente
-                            guerra.</li>
-                        <li><strong>1.9.- Acuerdo Mutuo:</strong> Dos o más participantes podrán intercambiarse los
-                            enemigos si así se acuerda mutuamente y siempre que no afecte negativamente a la guerra o al
-                            clan (esto estará a discreción del Líder).</li>
-                        <li><strong>1.10.- Rangos:</strong> Con dos ataques realizados (sin tener en cuenta las
-                            estrellas conseguidas) se adquiere el rango de Veterano. Con un solo ataque, se mantiene el
-                            rango actual. Con cero ataques, en caso del Veterano se degrada a Miembro, en caso de ser
-                            Miembro, pierde el derecho a participar en la siguiente guerra y la posibilidad de ser
-                            expulsado del clan (discreción del Líder).</li>
-                            <h2>Art.2 Liga de Guerras</h2>
-                            <h3>Organización y Registro.</h3>
-                            <li><strong>1.11.- Gerras Mensuales:</strong> Salvo excepciones extraordinarias, el clan siempre entrará en la liga guerras. Las ligas se organizan en 5vs5, 15vs15 o 30vs30.</li>
-                            <li><strong>1.12.- Registro:</strong> Sólo los Veteranos que tengan este rango en las dos guerras diarias anteriores a la la Liga, tendrán plaza asegurada para participar en la Liga. Si el número de participantes es a la baja o al alza, será el Líder quien tome la desición de quiene entran y quien se queda fuera.</li>
-                            <li><strong>1.13.- Reservas:</strong>En las Ligas, quienes no estén participando, están en reserva por si hay que sustituir a un jugador, por el motivo que sea. En caso de que no haya nadie voluntario, será el líder quien decida quien entra.</li>
-                            <h3>Normas y Sanciones.</h3>
-                            <li><strong>1.13.- Los Ataques:</strong> Los participantes atacarán a sus espejos. Sólo se podrá atacar a otro enemigo si éste ya fue atacado por su espejo.</li>
-                            <li><strong>1.14.- Sanciones:</strong> El participante que robe un enemigo, será degradado y sacado de la Liga y entrará en su lugar un reserva.</li>
-                            <li><strong>1.15.- Reparto de medallas:</strong> El reparto de medallas se hará en función de estrellas conseguidas, sin contar aquellas que se han conseguido de forma injusta, el listado de orden de los ganadores lo muestra el propio juego. En caso de empate de tira del máximo porcentaje de destrucción.</li>
-                    </ul>
-                    </p>
+                <!-- Círculos (Esquinas) -->
+                <a href="index.html" class="corner tl home-btn" title="Volver al inicio">
+                    <div class="gold-circle">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                        </svg>
+                    </div>
+                </a>
+                <div class="corner tr"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+
+                <!-- Pergamino -->
+                <div class="paper">
+                    <div class="paper-header text-center">
+                        <div class="flex items-center justify-center gap-4">
+                            <img src="/recursos/img/escudoClanGenesis.webp" alt="Escudo del Clan"
+                                class="w-12 h-12 md:w-16 md:h-16 object-contain">
+                        </div>
+                        <h1 class="coc-font text-3xl text-amber-900 italic uppercase">Normas Génesis</h1>
+                    </div>
+
+                    <!-- Pestañas de Navegación -->
+                    <div class="tabs-container">
+                        <button id="btn1" class="tab-btn active">Art. 1: Guerras Diarias</button>
+                        <button id="btn2" class="tab-btn">Art. 2: Liga de Clanes</button>
+                    </div>
+
+                    <div class="scroll-content">
+                        <!-- ARTICULO 1 -->
+                        <div id="textoNormas1">
+                            <h2 class="article-title">ART.1 GUERRAS DIARIAS</h2>
+
+                            <!-- Subpestañas Internas -->
+                            <div class="flex gap-2 mb-4">
+                                <button id="btn3"
+                                    class="text-[10px] bg-amber-800 text-white px-3 py-1 rounded-full uppercase font-bold">Registro
+                                    y Organización</button>
+                                <button id="btn4"
+                                    class="text-[10px] bg-amber-200 text-amber-800 px-3 py-1 rounded-full uppercase font-bold border border-amber-800">Normas
+                                    y Sanciones</button>
+                            </div>
+
+                            <div id="orgReg1">
+                                <h3 class="font-bold text-sm mb-2 uppercase">Registro y Organización</h3>
+                                <ul class="rule-list">
+                                    <li><strong>1.1.- Guerras Continuas:</strong> Salvo excepciones extraordinarias, el
+                                        clan
+                                        siempre
+                                        estará en
+                                        guerra.</li>
+                                    <li><strong>1.2.- Aviso de Registro:</strong> El día anterior a la búsqueda, se
+                                        publicará un
+                                        aviso en el chat. Es
+                                        fundamental estar atento para confirmar disponibilidad. Si no te registras no
+                                        participas.</li>
+                                    <li><strong>1.3.- Horario de Búsqueda:</strong> Se realizará por la mañana (horario
+                                        peninsular
+                                        español).</li>
+                                    <li><strong>1.4.- Selección de Guerreros:</strong> Las guerras se organizan en
+                                        grupos de
+                                        5
+                                        (5vs5, 10vs10, etc.).
+                                        Si el número de participantes está cerca a la alta, para cubrir el mínimo, el
+                                        líder
+                                        elegirá
+                                        miembros de forma estratégica.
+                                        Estos jugadores/as no están obligados a atacar, pero si incumplen alguna otra
+                                        norma,
+                                        podrán
+                                        ser sancionados.</li>
+                                    <li><strong>1.5.- Decisión Final:</strong> El líder tiene la última palabra sobre
+                                        quién
+                                        entra y
+                                        quién se queda fuera, si el número de participantes está cerca de la baja.
+                                        Teniendo
+                                        el
+                                        rango
+                                        de Veterano prioridad para permanecer en la guerra.</li>
+                                </ul>
+                            </div>
+
+                            <div id="norSan1" class="ocultar">
+                                <h3 class="font-bold text-sm mb-2 uppercase">Normas y Sanciones</h3>
+                                <ul class="rule-list">
+                                    <li><strong>1.6.- Regla del espejo (Primeras 12h):</strong>Durante las primeras 12
+                                        horas
+                                        de
+                                        la
+                                        guerra. solo está permitido atacar a tu número equivalente (tu "espejo").</li>
+                                    <li><strong>1.7.- Ataque Libre (Después de 12h):</strong>Una vez transcurrida las
+                                        primeras
+                                        12
+                                        horas, los ataques son libres y podrás elegir al rival que prefieras del mapa.
+                                    </li>
+                                    <li><strong>1.8.- Sanciones:</strong>El incumplimiento de la "Regla del Espejo"
+                                        (atacar
+                                        a
+                                        otro
+                                        rival antes de tiempo) conllevará la degradación de rango y la exclusión de la
+                                        siguiente
+                                        guerra.</li>
+                                    <li><strong>1.9.- Acuerdo Mutuo:</strong> Dos o más participantes podrán
+                                        intercambiarse
+                                        los
+                                        enemigos si así se acuerda mutuamente y siempre que no afecte negativamente a la
+                                        guerra
+                                        o al
+                                        clan (esto estará a discreción del Líder).</li>
+                                    <li><strong>1.10.- Rangos:</strong> Con dos ataques realizados (sin tener en cuenta
+                                        las
+                                        estrellas conseguidas) se adquiere el rango de Veterano. Con un solo ataque, se
+                                        mantiene
+                                        el
+                                        rango actual. Con cero ataques, en caso del Veterano se degrada a Miembro, en
+                                        caso
+                                        de
+                                        ser
+                                        Miembro, pierde el derecho a participar en la siguiente guerra y la posibilidad
+                                        de
+                                        ser
+                                        expulsado del clan (discreción del Líder).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ARTICULO 2 -->
+                        <div id="textoNormas2" class="ocultar">
+                            <h2 class="article-title">ART.2 LIGA DE CLANES</h2>
+
+                            <div class="flex gap-2 mb-4">
+                                <button id="btn5"
+                                    class="text-[10px] bg-amber-800 text-white px-3 py-1 rounded-full uppercase font-bold">Registro
+                                    Y Organización</button>
+                                <button id="btn6"
+                                    class="text-[10px] bg-amber-200 text-amber-800 px-3 py-1 rounded-full uppercase font-bold border border-amber-800">Normas
+                                    y Sanciones</button>
+                            </div>
+
+                            <div id="orgReg2">
+                                <h3 class="font-bold text-sm mb-2 uppercase">Registro y Organización</h3>
+                                <ul class="rule-list">
+                                    <li><strong>2.11.- Gerras Mensuales:</strong> Salvo excepciones extraordinarias, el
+                                        clan
+                                        siempre
+                                        entrará en la liga guerras. Las ligas se organizan en 5vs5, 15vs15 o 30vs30.
+                                    </li>
+                                    <li><strong>2.12.- Registro:</strong> Sólo los Veteranos que tengan este rango en
+                                        las
+                                        dos
+                                        guerras diarias anteriores a la la Liga, tendrán plaza asegurada para participar
+                                        en
+                                        la
+                                        Liga.
+                                        Si el número de participantes es a la baja o al alza, será el Líder quien tome
+                                        la
+                                        desición
+                                        de quiene entran y quien se queda fuera.</li>
+                                    <li><strong>2.13.- Reservas:</strong>En las Ligas, quienes no estén participando,
+                                        están
+                                        en
+                                        reserva por si hay que sustituir a un jugador, por el motivo que sea. En caso de
+                                        que
+                                        no
+                                        haya
+                                        nadie voluntario, será el líder quien decida quien entra.</li>
+                                </ul>
+                            </div>
+
+                            <div id="norSan2" class="ocultar">
+                                <h3 class="font-bold text-sm mb-2 uppercase">Normas y Sanciones</h3>
+                                <ul class="rule-list">
+                                    <li><strong>2.13.- Los Ataques:</strong> Los participantes atacarán a sus espejos.
+                                        Sólo
+                                        se
+                                        podrá
+                                        atacar a otro enemigo si éste ya fue atacado por su espejo.</li>
+                                    <li><strong>2.14.- Sanciones:</strong> El participante que robe un enemigo, será
+                                        degradado y
+                                        sacado de la Liga y entrará en su lugar un reserva.</li>
+                                    <li><strong>2.15.- Reparto de medallas:</strong> El reparto de medallas se hará en
+                                        función
+                                        de
+                                        estrellas conseguidas, sin contar aquellas que se han conseguido de forma
+                                        injusta,
+                                        el
+                                        listado de orden de los ganadores lo muestra el propio juego. En caso de empate
+                                        se usará el máximo porcentaje de destrucción.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <button class="ok-btn coc-font uppercase italic">¡Entendido!</button> -->
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
