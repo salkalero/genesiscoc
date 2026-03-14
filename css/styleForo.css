@@ -1,0 +1,40 @@
+
+        :root {
+            --coc-green: #4e9421;
+            --coc-dark-green: #3a7217;
+            --paper: #e6cc9e;
+            --wood: #5d3a1a;
+        }
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: radial-gradient(circle, var(--coc-green) 0%, var(--coc-dark-green) 100%);
+            min-height: 100vh;
+            color: #3a2410;
+        }
+        .coc-font { font-family: 'Luckiest Guy', cursive; text-shadow: 2px 2px 0px #000; }
+        .comment-bubble {
+            background: var(--paper);
+            border: 3px solid var(--wood);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+        .comment-bubble::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            bottom: -15px;
+            border-width: 15px 15px 0 0;
+            border-style: solid;
+            border-color: var(--wood) transparent transparent transparent;
+        }
+        .btn-coc {
+            background: #3b82f6;
+            border-bottom: 6px solid #1e3a8a;
+            transition: all 0.1s;
+        }
+        .btn-coc:active { border-bottom-width: 2px; transform: translateY(4px); }
+        .loading-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            display: flex; align-items: center; justify-content: center; z-index: 100;
+        }
