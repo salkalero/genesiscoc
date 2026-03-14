@@ -180,3 +180,14 @@ body {
     text-shadow: 2px 2px 0px #000;
     letter-spacing: 1px;
 }
+
+/* AJUSTE PARA MÓVIL: Evita solapamiento con el título */
+@media (max-width: 768px) {
+    .rules-btn {
+        top: auto;
+        bottom: 20px; /* Se mueve a la esquina inferior */
+        right: 20px;
+        padding: 8px 14px;
+        border-bottom-width: 6px;
+    }
+}
