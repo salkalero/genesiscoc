@@ -17,6 +17,41 @@
     <!-- Cuadro de Mensaje Personalizado -->
     <div id="customMsg"></div>
 
+    <!-- PANTALLA DE LOGIN -->
+    <div id="loginSection" class="coc-panel p-8 text-center">
+        <!-- BOTÓN VOLVER -->
+        <div class="flex justify-start mb-6">
+            <a href="index.html"
+                class="bg-amber-800 text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 text-xs transition-transform active:scale-95">
+                <span>⬅</span> VOLVER
+            </a>
+        </div>
+        <h1 class="coc-font text-3xl text-amber-900 mb-6 uppercase italic">Acceso Líder</h1>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-[10px] font-black uppercase text-amber-900/60 mb-1">Nombre de
+                    Comandante</label>
+                <input type="text" id="userInput" class="input-coc" placeholder="Usuario...">
+            </div>
+            <div>
+                <label class="block text-[10px] font-black uppercase text-amber-900/60 mb-1">Código de Aldea</label>
+                <input type="password" id="passInput" class="input-coc" placeholder="••••••••">
+            </div>
+            <button id="loginBtn"
+                class="w-full btn-coc coc-font py-4 rounded-xl text-xl uppercase italic tracking-wider mt-4">
+                Entrar al Panel
+            </button>
+        </div>
+    </div>
+
+    <!-- PANEL DE ADMINISTRACIÓN -->
+    <div id="adminForm" class="coc-panel p-6 ocultar" style="max-width: 700px;">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="coc-font text-2xl text-amber-900 uppercase italic">Bitácora de Estatus</h1>
+            <button onclick="location.reload()"
+                class="bg-amber-900 text-white text-[10px] font-bold px-3 py-1 rounded-lg">Salir</button>
+        </div>
+
         <div class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black/5 p-4 rounded-xl">
                 <div>
