@@ -1,0 +1,17 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBIO9an0ZFAMdvJNOuV_Mb6ulZzVego_N8",
+  authDomain: "comentariosgeminis-coc.firebaseapp.com",
+  projectId: "comentariosgeminis-coc",
+  storageBucket: "comentariosgeminis-coc.firebasestorage.app",
+  messagingSenderId: "227180378242",
+  appId: "1:227180378242:web:7ab611322962fba91fdc9b"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
